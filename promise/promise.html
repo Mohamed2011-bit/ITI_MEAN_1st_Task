@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+
+<body>
+    <h1 id="1"></h1>
+
+    <script>
+        let customer = {email: "egyria2011@gmail.com", name:"Mohamed Yasser", id:1}
+        let orders = {order: "mobile", customerId: 1, creationDate: "2022-02-02"}  
+        
+        function myDisplayer(obj){
+            for(var property in obj) {
+                document.getElementById('1').innerHTML += obj[property];
+            }  
+        }
+
+        let myPromise = new Promise(function(myResolve, myReject){
+            if(('id' in customer) && customer["id"] === 1){
+                myResolve(orders);
+            }else{
+                myReject("No Order Found");
+            }
+        });
+
+        myPromise.then(
+            function(value) {
+                myDisplayer(value);
+            },
+
+            function(error) {
+                myDisplayer(error);
+            }
+        );
+    </script>
+</body>
+
+</html>
